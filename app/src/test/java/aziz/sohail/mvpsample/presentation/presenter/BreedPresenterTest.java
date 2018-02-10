@@ -12,7 +12,6 @@ import aziz.sohail.mvpsample.presentation.viewmodel.mapper.BreedToBreeViewModelM
 import io.reactivex.observers.DisposableObserver;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
@@ -40,10 +39,6 @@ public class BreedPresenterTest {
         presenter = new BreedListPresenter(mockUseCase, mockMapper, mockErrorMessageFactory);
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void testGetLocalBreedListThrowsExceptionWithoutView() {
-        presenter.getLocalBreedList();
-    }
 
     @Test(expected = IllegalStateException.class)
     public void testGetBreedListThrowsExceptionWithoutView() {
@@ -70,23 +65,5 @@ public class BreedPresenterTest {
 
     }
 
-    @Test
-    public void testShowProgressCalledOnOGetBreedsLocal() {
 
-        presenter.setView(mockView);
-
-        presenter.getLocalBreedList();
-
-        verify(mockView).showLoading();
-    }
-
-    @Test
-    public void testUseCaseCalledOnGetBreedsLocal() {
-        presenter.setView(mockView);
-        presenter.getLocalBreedList();
-
-        verify(mockUseCase).execute(any(DisposableObserver.class), any(GetBreedListUseCase.Params.class));
-        verifyNoMoreInteractions(mockUseCase);
-
-    }
 }

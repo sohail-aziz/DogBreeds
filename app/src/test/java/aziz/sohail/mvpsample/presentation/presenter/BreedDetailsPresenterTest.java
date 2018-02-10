@@ -45,10 +45,6 @@ public class BreedDetailsPresenterTest {
         presenter.getBreedDetails(mock(BreedViewModel.class));
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void testGetLocalBreedDetailsThrowsExceptionIfViewNotSet() {
-        presenter.getLocalBreedDetails(mock(BreedViewModel.class));
-    }
 
     @Test
     public void testShowProgressCalledOnGetBreedsDetails() {
@@ -56,17 +52,6 @@ public class BreedDetailsPresenterTest {
 
         presenter.setView(mockView);
         presenter.getBreedDetails(mock(BreedViewModel.class));
-
-        verify(mockView).showLoading();
-
-    }
-
-    @Test
-    public void testShowProgressCalledOnGetBreedsDetailsLocal() {
-
-
-        presenter.setView(mockView);
-        presenter.getLocalBreedDetails(mock(BreedViewModel.class));
 
         verify(mockView).showLoading();
 
@@ -83,14 +68,5 @@ public class BreedDetailsPresenterTest {
 
     }
 
-    @Test
-    public void testUseCaseCalledOnGetBreedsDetailsLocal() {
 
-        presenter.setView(mockView);
-        presenter.getLocalBreedDetails(mock(BreedViewModel.class));
-
-        verify(mockUseCase).execute(any(DisposableObserver.class), any(GetDogForBreedUseCase.Params.class));
-        verifyNoMoreInteractions(mockUseCase);
-
-    }
 }
