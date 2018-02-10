@@ -112,7 +112,7 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    DogRepository provideDogRepository(DogRepositoryImpl repository) {
+    public DogRepository provideDogRepository(DogRepositoryImpl repository) {
         return repository;
     }
 

@@ -7,10 +7,11 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import aziz.sohail.mvpsample.data.repository.Repository;
-import aziz.sohail.mvpsample.data.repository.RepositoryImpl;
+import aziz.sohail.mvpsample.data.repository.BreedRepository;
+import aziz.sohail.mvpsample.data.repository.BreedRepositoryImpl;
+import aziz.sohail.mvpsample.data.repository.DogRepository;
+import aziz.sohail.mvpsample.data.repository.DogRepositoryImpl;
 import aziz.sohail.mvpsample.data.repository.mapper.BreedMapper;
 import aziz.sohail.mvpsample.data.repository.mapper.DogMapper;
 import aziz.sohail.mvpsample.di.ApplicationComponent;
@@ -21,7 +22,7 @@ import aziz.sohail.mvpsample.domain.model.Dog;
 import io.reactivex.Observable;
 
 /**
- * Created by sohailaziz on 3/2/18.
+ * TestApplication provices mock responses for UI testing
  */
 
 public class TestApplication extends MyApplication {
@@ -40,12 +41,10 @@ public class TestApplication extends MyApplication {
         }
 
         @Override
-        public Repository provideDogRepository(RepositoryImpl repository) {
-            return new Repository() {
+        public BreedRepository provideBreedRepository(BreedRepositoryImpl repository) {
+            return new BreedRepository() {
                 @Override
                 public Observable<List<Breed>> getBreedList() {
-
-
                     Gson gson = new Gson();
                     Type listType = new TypeToken<List<String>>() {
                     }.getType();
@@ -55,12 +54,17 @@ public class TestApplication extends MyApplication {
 
 
                     return Observable.just(breedMapper.map(breedList));
-
                 }
+            };
+        }
+
+
+        @Override
+        public DogRepository provideDogRepository(DogRepositoryImpl repository) {
+            return new DogRepository() {
 
                 @Override
-                public Observable<List<Dog>> getBreedDetails(String breedName) {
-
+                public Observable<List<Dog>> getDogForBreed(String breedName) {
                     Gson gson = new Gson();
                     Type listType = new TypeToken<List<String>>() {
                     }.getType();
@@ -71,7 +75,6 @@ public class TestApplication extends MyApplication {
 
                     return Observable.just(dogMapper.map(dogs));
                 }
-
 
             };
         }
