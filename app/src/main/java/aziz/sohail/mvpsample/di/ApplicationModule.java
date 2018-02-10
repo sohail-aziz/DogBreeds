@@ -5,9 +5,6 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -16,8 +13,10 @@ import aziz.sohail.mvpsample.data.local.AppDatabase;
 import aziz.sohail.mvpsample.data.local.BreedDao;
 import aziz.sohail.mvpsample.data.local.DogDao;
 import aziz.sohail.mvpsample.data.remote.RestAPI;
-import aziz.sohail.mvpsample.data.repository.Repository;
-import aziz.sohail.mvpsample.data.repository.RepositoryImpl;
+import aziz.sohail.mvpsample.data.repository.BreedRepository;
+import aziz.sohail.mvpsample.data.repository.BreedRepositoryImpl;
+import aziz.sohail.mvpsample.data.repository.DogRepository;
+import aziz.sohail.mvpsample.data.repository.DogRepositoryImpl;
 import dagger.Module;
 import dagger.Provides;
 import io.reactivex.Scheduler;
@@ -99,9 +98,21 @@ public class ApplicationModule {
         return retrofit.create(RestAPI.class);
     }
 
+//    @Provides
+//    @Singleton
+//    public Repository provideRepository(RepositoryImpl repository) {
+//        return repository;
+//    }
+
     @Provides
     @Singleton
-    public Repository provideDogRepository(RepositoryImpl repository) {
+    public BreedRepository provideBreedRepository(BreedRepositoryImpl repository) {
+        return repository;
+    }
+
+    @Provides
+    @Singleton
+    DogRepository provideDogRepository(DogRepositoryImpl repository) {
         return repository;
     }
 

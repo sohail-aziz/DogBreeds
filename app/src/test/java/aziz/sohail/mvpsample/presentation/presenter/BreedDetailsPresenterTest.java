@@ -6,9 +6,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import aziz.sohail.mvpsample.domain.usecase.GetBreedDetailsUseCase;
+import aziz.sohail.mvpsample.domain.usecase.GetDogForBreedUseCase;
 import aziz.sohail.mvpsample.presentation.ErrorMessageFactory;
-import aziz.sohail.mvpsample.presentation.presenter.BreedDetailsPresenter;
 import aziz.sohail.mvpsample.presentation.viewmodel.BreedViewModel;
 import aziz.sohail.mvpsample.presentation.viewmodel.mapper.DogToDogViewModelMapper;
 import io.reactivex.observers.DisposableObserver;
@@ -28,7 +27,7 @@ public class BreedDetailsPresenterTest {
 
     BreedDetailsPresenter presenter;
     @Mock
-    GetBreedDetailsUseCase mockUseCase;
+    GetDogForBreedUseCase mockUseCase;
     @Mock
     DogToDogViewModelMapper mockMapper;
     @Mock
@@ -79,7 +78,7 @@ public class BreedDetailsPresenterTest {
         presenter.setView(mockView);
         presenter.getBreedDetails(mock(BreedViewModel.class));
 
-        verify(mockUseCase).execute(any(DisposableObserver.class), any(GetBreedDetailsUseCase.Params.class));
+        verify(mockUseCase).execute(any(DisposableObserver.class), any(GetDogForBreedUseCase.Params.class));
         verifyNoMoreInteractions(mockUseCase);
 
     }
@@ -90,7 +89,7 @@ public class BreedDetailsPresenterTest {
         presenter.setView(mockView);
         presenter.getLocalBreedDetails(mock(BreedViewModel.class));
 
-        verify(mockUseCase).execute(any(DisposableObserver.class), any(GetBreedDetailsUseCase.Params.class));
+        verify(mockUseCase).execute(any(DisposableObserver.class), any(GetDogForBreedUseCase.Params.class));
         verifyNoMoreInteractions(mockUseCase);
 
     }

@@ -5,7 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import aziz.sohail.mvpsample.domain.model.Dog;
-import aziz.sohail.mvpsample.domain.usecase.GetBreedDetailsUseCase;
+import aziz.sohail.mvpsample.domain.usecase.GetDogForBreedUseCase;
 import aziz.sohail.mvpsample.domain.usecase.UserCaseObserver;
 import aziz.sohail.mvpsample.presentation.ErrorMessageFactory;
 import aziz.sohail.mvpsample.presentation.viewmodel.mapper.DogToDogViewModelMapper;
@@ -19,12 +19,12 @@ import timber.log.Timber;
 public class BreedDetailsPresenter extends Presenter<BreedDetailsPresenter.BreedDetailsView> {
 
 
-    private final GetBreedDetailsUseCase getBreedDetailsUseCase;
+    private final GetDogForBreedUseCase getBreedDetailsUseCase;
     private final DogToDogViewModelMapper mapper;
     private final ErrorMessageFactory errorMessageFactory;
 
     @Inject
-    public BreedDetailsPresenter(GetBreedDetailsUseCase getBreedDetailsUseCase, DogToDogViewModelMapper mapper, ErrorMessageFactory errorMessageFactory) {
+    public BreedDetailsPresenter(GetDogForBreedUseCase getBreedDetailsUseCase, DogToDogViewModelMapper mapper, ErrorMessageFactory errorMessageFactory) {
         this.getBreedDetailsUseCase = getBreedDetailsUseCase;
         this.mapper = mapper;
         this.errorMessageFactory = errorMessageFactory;
@@ -44,7 +44,7 @@ public class BreedDetailsPresenter extends Presenter<BreedDetailsPresenter.Breed
         }
 
         getView().showLoading();
-        getBreedDetailsUseCase.execute(new BreedDetailsObserver(), new GetBreedDetailsUseCase.Params(breedViewModel.breedName));
+        getBreedDetailsUseCase.execute(new BreedDetailsObserver(), new GetDogForBreedUseCase.Params(breedViewModel.breedName));
     }
 
 

@@ -6,10 +6,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import aziz.sohail.mvpsample.domain.usecase.GetBreedDetailsUseCase;
 import aziz.sohail.mvpsample.domain.usecase.GetBreedListUseCase;
 import aziz.sohail.mvpsample.presentation.ErrorMessageFactory;
-import aziz.sohail.mvpsample.presentation.presenter.BreedListPresenter;
 import aziz.sohail.mvpsample.presentation.viewmodel.mapper.BreedToBreeViewModelMapper;
 import io.reactivex.observers.DisposableObserver;
 
