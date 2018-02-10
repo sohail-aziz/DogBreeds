@@ -54,7 +54,7 @@ public class TestApplication extends MyApplication {
                     BreedMapper breedMapper = new BreedMapper();
 
 
-                    return Observable.just(breedMapper.map(breedList)).delay(10, TimeUnit.MILLISECONDS);
+                    return Observable.just(breedMapper.map(breedList));
 
                 }
 
@@ -69,7 +69,7 @@ public class TestApplication extends MyApplication {
                     DogMapper dogMapper = new DogMapper();
 
 
-                    return Observable.just(dogMapper.map(dogs)).delay(100, TimeUnit.MILLISECONDS);
+                    return Observable.just(dogMapper.map(dogs));
                 }
 
 
