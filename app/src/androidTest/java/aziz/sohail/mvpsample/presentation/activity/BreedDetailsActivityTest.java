@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.intent.Intents;
-import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -12,8 +11,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import aziz.sohail.mvpsample.JsonUtils;
 import aziz.sohail.mvpsample.R;
-import aziz.sohail.mvpsample.data.repository.mapper.BreedMapper;
 import aziz.sohail.mvpsample.presentation.viewmodel.BreedViewModel;
 
 import static android.support.test.espresso.Espresso.onView;
@@ -23,8 +22,11 @@ import static android.support.test.espresso.contrib.RecyclerViewActions.actionOn
 import static android.support.test.espresso.intent.Intents.intended;
 import static android.support.test.espresso.intent.Intents.times;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static aziz.sohail.mvpsample.presentation.activity.RecyclerViewAssertions.atPosition;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -35,7 +37,9 @@ import static org.hamcrest.Matchers.is;
 @RunWith(AndroidJUnit4.class)
 public class BreedDetailsActivityTest {
 
-    public static final String BREED_NAME = "akita";
+    public static final String BREED_NAME = "affenpinscher";
+    public static final String DOG_IMAGE_URL = "https:\\/\\/dog.ceo\\/api\\/img\\/hound-Ibizan\\/n02091244_100.jpg";
+    public static final int DOG_LIST_SIZE = 7;
 
 
     @Rule
@@ -50,6 +54,13 @@ public class BreedDetailsActivityTest {
 
                 }
             };
+
+
+    @Test
+    public void testBreedListSize() {
+
+        onView(withId(R.id.recycler_view_dogs)).check(new RecyclerViewAssertions.RecyclerViewItemCountAssertion(DOG_LIST_SIZE));
+    }
 
 
     @Test

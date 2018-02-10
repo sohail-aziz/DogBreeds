@@ -69,18 +69,10 @@ public class TestApplication extends MyApplication {
                     DogMapper dogMapper = new DogMapper();
 
 
-                    return Observable.just(dogMapper.map(dogs));
+                    return Observable.just(dogMapper.map(dogs)).delay(100, TimeUnit.MILLISECONDS);
                 }
 
-                @Override
-                public Observable<List<Breed>> getBreedListLocal() {
-                    return null;
-                }
 
-                @Override
-                public Observable<List<Dog>> getBreedDetailsLocal(String breedName) {
-                    return null;
-                }
             };
         }
     }
