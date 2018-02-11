@@ -12,7 +12,7 @@ import dagger.Component;
  * Dagger Application Component defines injection points in app
  */
 @Singleton
-@Component(modules = {ApplicationModule.class})
+@Component(modules = {ApplicationModule.class, NetworkModule.class, DatabaseModule.class})
 public interface ApplicationComponent {
 
     void inject(BreedsActivity activity);

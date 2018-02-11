@@ -5,6 +5,8 @@ import android.app.Application;
 import aziz.sohail.mvpsample.di.ApplicationComponent;
 import aziz.sohail.mvpsample.di.ApplicationModule;
 import aziz.sohail.mvpsample.di.DaggerApplicationComponent;
+import aziz.sohail.mvpsample.di.DatabaseModule;
+import aziz.sohail.mvpsample.di.NetworkModule;
 import timber.log.Timber;
 
 /**
@@ -33,7 +35,11 @@ public class MyApplication extends Application {
 
     private void initializeInjector() {
         applicationComponent =
-                DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(this)).build();
+                DaggerApplicationComponent.builder()
+                        .applicationModule(new ApplicationModule(this))
+                        .networkModule(new NetworkModule())
+                        .databaseModule(new DatabaseModule())
+                        .build();
     }
 
     public ApplicationComponent getApplicationComponent() {

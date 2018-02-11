@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import aziz.sohail.mvpsample.data.repository.BreedRepository;
+import aziz.sohail.mvpsample.di.ApplicationModule;
 import aziz.sohail.mvpsample.domain.model.Breed;
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
@@ -18,7 +19,7 @@ public class GetBreedListUseCase extends UseCase<List<Breed>, GetBreedListUseCas
 
 
     @Inject
-    public GetBreedListUseCase(@Named("ui_thread") Scheduler uiThread, @Named("executor_thread") Scheduler executorThread, BreedRepository breedRepository) {
+    public GetBreedListUseCase(@Named(ApplicationModule.NAME_UI_THREAD) Scheduler uiThread, @Named(ApplicationModule.NAME_EXECUTOR_THREAD) Scheduler executorThread, BreedRepository breedRepository) {
         super(uiThread, executorThread);
         this.breedRepository = breedRepository;
     }

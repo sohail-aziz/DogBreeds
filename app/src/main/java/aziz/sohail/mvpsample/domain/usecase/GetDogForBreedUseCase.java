@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import aziz.sohail.mvpsample.data.repository.DogRepository;
+import aziz.sohail.mvpsample.di.ApplicationModule;
 import aziz.sohail.mvpsample.domain.model.Dog;
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
@@ -16,8 +17,8 @@ public class GetDogForBreedUseCase extends UseCase<List<Dog>, GetDogForBreedUseC
     private final DogRepository dogRepository;
 
     @Inject
-    public GetDogForBreedUseCase(@Named("ui_thread") Scheduler uiThread,
-                                 @Named("executor_thread") Scheduler executorThread,
+    public GetDogForBreedUseCase(@Named(ApplicationModule.NAME_UI_THREAD) Scheduler uiThread,
+                                 @Named(ApplicationModule.NAME_EXECUTOR_THREAD) Scheduler executorThread,
                                  DogRepository dogRepository) {
         super(uiThread, executorThread);
         this.dogRepository = dogRepository;

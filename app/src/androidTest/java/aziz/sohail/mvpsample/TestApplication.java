@@ -22,7 +22,7 @@ import aziz.sohail.mvpsample.domain.model.Dog;
 import io.reactivex.Observable;
 
 /**
- * TestApplication provices mock responses for UI testing
+ * TestApplication provides mock responses for UI testing
  */
 
 public class TestApplication extends MyApplication {
